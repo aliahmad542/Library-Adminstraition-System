@@ -3,9 +3,12 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\Admin as AliModel;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+ 
+
 class Admin
 {
     /**
@@ -15,17 +18,13 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-        $user = Auth::user();
+        $admin = Auth::guard('admin')->user();
 
-        if (!$user) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        if (!$user->admin) {
-            return response()->json(['error' => 'Forbidden - must be admin'], 403);
+        if (! $admin) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         return $next($request);
     }
-}
+    }
+

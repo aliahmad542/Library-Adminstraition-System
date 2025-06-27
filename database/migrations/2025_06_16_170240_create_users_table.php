@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email', 191)->unique();
             $table->string('verification_code')->nullable();
             $table->string('password');
-            $table->boolean('is_banned');
+            $table->boolean('is_banned')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

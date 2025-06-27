@@ -4,10 +4,11 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
-class Author extends Model
+class Author extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -15,7 +16,8 @@ class Author extends Model
         'firstname', 'lastname', 'location', 'email', 'password', 'verification_code',
     ];
 
-   
+    protected $table = 'authors';
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

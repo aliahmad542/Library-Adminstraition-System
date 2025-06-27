@@ -16,15 +16,10 @@ class Author
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-        $user = Auth::user();
+        $admin = Auth::guard('author')->user();
 
-        if (!$user) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        if (!$user->author) {
-            return response()->json(['error' => 'Forbidden - must be author'], 403);
+        if (! $admin) {
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
 
         return $next($request);

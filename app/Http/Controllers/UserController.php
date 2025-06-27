@@ -153,11 +153,11 @@ $book_requested=RequestModel::create([
         return response()->download(storage_path("app/{$book->file_path}"));
     }
 
-    public function view_Favorite_Books($userId)
+    public function view_Favorite_Books()
     {    
-        $user=User::findOrFail($userId);
-      $favorite=  $user->favoriteBooks()->get();
-        // $favorites = $user->favoriteBooks->get();
+       
+        $user=Auth::user();
+      $favorite=  $user->favoriteBooks;
         return response()->json(  $favorite);
         
     }

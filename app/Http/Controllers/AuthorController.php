@@ -25,7 +25,7 @@ class AuthorController extends Controller
     
             $postRequest = PostRequest::create([
                 'title' => $validated['title'],
-                'author_id' => 1,
+                'author_id' => Auth::id(),
                 'category_id' => $validated['category_id'],
                 'description' => $validated['description'],
                 'price' => $validated['price'], 
@@ -36,7 +36,7 @@ class AuthorController extends Controller
             ]);
     
             return response()->json([
-                'message' => 'Publishing request sent successfully',
+                'message' => 'Publishing request is pending , The Admin will respond shortly after checking the content',
                 'data' => $postRequest,
             ], 201);
             
