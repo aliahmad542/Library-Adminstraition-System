@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('location');
             $table->string('email', 191)->unique();
-            $table->string('verification_code')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

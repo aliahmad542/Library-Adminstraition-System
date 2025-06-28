@@ -51,9 +51,7 @@ class AuthenticatedSessionController extends Controller
             return response()->json(['message' => 'Invalid credentials'], 401);
         }
 
-        if ($admin->verification_code !== null) {
-            return response()->json(['message' => 'Please verify your email first'], 403);
-        }
+
 
         $token = $admin->createToken('auth_token')->plainTextToken;
 
