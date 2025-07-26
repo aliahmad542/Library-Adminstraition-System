@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('Description');
             $table->double('price');
-            $table->string('file_path');
+            $table->string('file_path')->default('0');
             $table->foreignId('category_id');
             $table->foreignId('author_id');
             $table->foreignId('admin_id');
             $table->integer('quantity');
-
+            $table->string('image_path');
             $table->timestamps();
         });
     }

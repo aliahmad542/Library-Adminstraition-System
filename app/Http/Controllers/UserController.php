@@ -23,13 +23,7 @@ class UserController extends Controller
         return response()->json(Auth::user());
     }
     public function Edit_my_profile(Request $request){
-        // User::where('id',Auth()->id)->update([
-        //     'firstname' => $request->firstname,
-        //     'lastname' => $request->lastname,
-        //     'location' => $request->location,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
+      
         /** @var \App\Models\User $user */
 
         $user = Auth::user();
@@ -164,7 +158,6 @@ $book_requested=RequestModel::create([
 
     public function view_Downloaded_Books()
     {
-        // غير مفعّل حاليًا
         return response()->json(['message' => 'Not implemented']);
     }
 

@@ -38,6 +38,8 @@ Route::post('add-book-to-Favorite/{BookId}', [UserController::class, 'add_To_Fav
 Route::get('view-favorite-books', [UserController::class, 'view_Favorite_Books']);
 Route::get('download-books/{book}', [UserController::class, 'download_Book']); // need a check
 Route::get('view-requested-book', [UserController::class, 'view_Requested_Books']);
+Route::get('Suggest-Extra-Copies',[BookController::class,'Suggest_Extra_Copies']);
+
 });
 
 Route::middleware(['auth:sanctum','author'])->group(function(){
@@ -59,6 +61,14 @@ Route::post('add-book',[BookController::class,'add_book']);
 Route::post('add-category',[CategoryController::class,'add_category']);
 Route::post('update-book/{id}',[BookController::class,'update_book']);
 Route::get('delete-book/{id}',[BookController::class,'delete_book']);
+
+Route::get('low-demand-books',[BookController::class,'show_law_demands_books']);
+Route::get('Most-Requested-books',[BookController::class,'Most_Requested_books']);
+Route::get('High-Demand-Categories',[BookController::class,'High_Demand_Categories']);
+Route::get('peak-purchase-hours',[BookController::class,'peak_purchase_hours']);
+Route::get('Most-Active-User',[BookController::class,'Most_Active_User']);
+Route::get('Monthly-report',[BookController::class,'Monthly_report']);
+Route::get('ineffective-Books',[BookController::class,'ineffective_Books']);
 });
     
 
