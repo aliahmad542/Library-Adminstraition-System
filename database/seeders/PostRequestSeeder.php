@@ -23,6 +23,7 @@ class PostRequestSeeder extends Seeder
                 'category_id' => 8, // Technology
                 'admin_id' => 1,
                 'quantity' => 100,
+                'author_name'=>'ahmad',
                 'status' => 'pending',
             ],
             [
@@ -33,6 +34,8 @@ class PostRequestSeeder extends Seeder
                 'author_id' => 2,
                 'category_id' => 3, // Science Fiction
                 'admin_id' => 1,
+                                'author_name'=>'ahmad',
+
                 'quantity' => 75,
                 'status' => 'approved',
             ],
@@ -44,6 +47,8 @@ class PostRequestSeeder extends Seeder
                 'author_id' => 3,
                 'category_id' => 2, // Non-Fiction
                 'admin_id' => 1,
+                                'author_name'=>'ahmad',
+
                 'quantity' => 50,
                 'status' => 'rejected',
             ],
@@ -55,6 +60,8 @@ class PostRequestSeeder extends Seeder
                 'author_id' => 4,
                 'category_id' => 13, // Business
                 'admin_id' => 1,
+                                'author_name'=>'ahmad',
+
                 'quantity' => 80,
                 'status' => 'pending',
             ],
@@ -66,6 +73,8 @@ class PostRequestSeeder extends Seeder
                 'author_id' => 5,
                 'category_id' => 11, // Poetry
                 'admin_id' => 1,
+                                'author_name'=>'ahmad',
+
                 'quantity' => 40,
                 'status' => 'approved',
             ],

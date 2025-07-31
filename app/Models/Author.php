@@ -38,4 +38,8 @@ class Author extends Authenticatable
         return $this->hasMany(PostRequest::class);
         
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

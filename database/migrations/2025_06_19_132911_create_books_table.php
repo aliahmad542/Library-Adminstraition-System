@@ -18,7 +18,8 @@ return new class extends Migration
             $table->double('price');
             $table->string('file_path')->default('0');
             $table->foreignId('category_id');
-            $table->foreignId('author_id');
+            $table->foreignId('author_id')->default(0);
+            $table->string('author_name');
             $table->foreignId('admin_id');
             $table->integer('quantity');
             $table->string('image_path');

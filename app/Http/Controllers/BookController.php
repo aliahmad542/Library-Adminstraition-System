@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\User;
+use App\Models\Author;
+use App\Models\Admin;
+use App\Models\PostRequest;
 use App\Models\Request as ModelsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,32 +26,7 @@ class BookController extends Controller
         return response()->json($book);
     }
 
-    public function add_book(Request $request){
-       $request->validate([
-        'title'        => 'required|string|max:255',
-        'Description'  => 'required|string',
-        'price'        => 'required|numeric',
-        'category_id'  => 'required|exists:categories,id',
-        'admin_id'     => 'required|exists:admins,id',
-        'author_id'    => 'required|exists:authors,id',
-        'quantity'     => 'required|integer',
-        'file_path'    => 'required|file|mimes:pdf,doc,docx,epub' 
-    ]);
-    $filePath = $request->file('file_path')->store('books', 'public');
-    $data=Book::create([
-      'title'        => $request->title,
-      'Description'  => $request->Description,
-      'price'        => $request->price,
-      'file_path'    => $filePath,
-      'category_id'  => $request->category_id,
-      'admin_id'     => $request->admin_id,
-      'author_id'    => $request->author_id,
-      'quantity'     => $request->quantity,
-      'image_path'   => $request->image_path
-  ]);
-      
-      return response()->json(['you are added a new book successfully . Now , All users can see it' , $data]);
-    }
+    
     public function update_book(Request $request , $bookId){
      $newData=Book::findOrFail($bookId);
      $newData->update($request->all());
@@ -216,4 +194,84 @@ class BookController extends Controller
         return response()->json($suggestedBooks);
     }
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function publish_book(Request $request)
+{
+    $request->validate([
+        'title'       => 'required|string',
+        'description' => 'required|string',
+        'file_path'   =>  'required|file|mimes:pdf,docx,epub',
+        'price'       => 'required|numeric',
+        'category_id' => 'required|exists:categories,id',
+        'quantity'    => 'required|integer',
+        'author_name' => 'required|string',
+        'image_path'  => 'required|string',
+    ]);
+
+    $user = Auth::user();
+
+    $isAdmin = Admin::where('email', $user->email)->exists();
+    $isAuthor = Author::where('email', $user->email)->exists();
+
+    if ($isAdmin) {
+        $admin = Admin::where('email', $user->email)->first();
+
+        Book::create([
+            'title'        => $request->title,
+            'description'  => $request->description,
+            'price'        => $request->price,
+            'file_path'    => $request->file_path,
+            'category_id'  => $request->category_id,
+            'author_id'    => 0,
+            'author_name'  => $request->author_name,
+            'admin_id'     => $admin->id,
+            'quantity'     => $request->quantity,
+            'image_path'   => $request->image_path,
+        ]);
+
+        return response()->json(['message' => 'Book added directly by admin'], 201);
+
+    } elseif ($isAuthor) {
+        $author = Author::where('email', $user->email)->first();
+
+        PostRequest::create([
+            'title'        => $request->title,
+            'description'  => $request->description,
+            'file_path'    => $request->file_path,
+            'price'        => $request->price,
+            'category_id'  => $request->category_id,
+            'author_id'    => $author->id,
+            'author_name'  => $author->firstname.' '.$author->lastname,
+            'admin_id'     => 0,
+            'quantity'     => $request->quantity,
+            'status'       => 'pending',
+        ]);
+
+        return response()->json(['message' => 'Publish request sent for approval'], 201);
+    } else {
+        return response()->json(['message' => 'Unauthorized'], 403);
+    }
+}
+public function allAuthorBooks($id)
+{
+    $books = Book::where('author_id', $id)->get();
+
+    if ($books->isEmpty()) {
+        return response()->json(['message' => 'No books found for this author'], 404);
+    }
+
+    return response()->json($books, 200);
+}
 }

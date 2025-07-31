@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostRequest extends Model
 {
-    protected $fillable=['title','file_path','description','author_id','admin_id','price','category_id','quantity','status'];
+    protected $fillable=['title','file_path','description','author_id','admin_id','price','category_id','quantity','status','author_name'];
     public function author() {
         return  $this->belongsTo(Author::class);
     }

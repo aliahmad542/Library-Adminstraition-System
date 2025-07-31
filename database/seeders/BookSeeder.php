@@ -23,6 +23,7 @@ class BookSeeder extends Seeder
                 'image_path' => 'https://picsum.photos/400/600?random=1',
                 'category_id' => 8, // Technology
                 'author_id' => 1,
+                'author_name'=>'ahmad',
                 'admin_id' => 1,
                 'quantity' => 50,
             ],
@@ -34,6 +35,7 @@ class BookSeeder extends Seeder
                 'image_path' => 'https://picsum.photos/400/600?random=2',
                 'category_id' => 4, // Mystery
                 'author_id' => 2,
+                'author_name'=>'ahmad',
                 'admin_id' => 1,
                 'quantity' => 30,
             ],
@@ -45,6 +47,7 @@ class BookSeeder extends Seeder
                 'image_path' => 'https://picsum.photos/400/600?random=3',
                 'category_id' => 5, // Romance
                 'author_id' => 3,
+                'author_name'=>'ahmad',
                 'admin_id' => 1,
                 'quantity' => 25,
             ],
@@ -57,6 +60,7 @@ class BookSeeder extends Seeder
                 'category_id' => 3, // Science Fiction
                 'author_id' => 4,
                 'admin_id' => 1,
+                'author_name'=>'ahmad',
                 'quantity' => 40,
             ],
             [
@@ -68,6 +72,7 @@ class BookSeeder extends Seeder
                 'category_id' => 9, // Self-Help
                 'author_id' => 5,
                 'admin_id' => 1,
+                'author_name'=>'ahmad',
                 'quantity' => 35,
             ],
             [
@@ -79,6 +84,7 @@ class BookSeeder extends Seeder
                 'category_id' => 7, // History
                 'author_id' => 1,
                 'admin_id' => 1,
+                'author_name'=>'ahmad',
                 'quantity' => 20,
             ],
             [
@@ -90,6 +96,7 @@ class BookSeeder extends Seeder
                 'category_id' => 13, // Business
                 'author_id' => 2,
                 'admin_id' => 1,
+                'author_name'=>'ahmad',
                 'quantity' => 45,
             ],
             [
@@ -101,6 +108,7 @@ class BookSeeder extends Seeder
                 'category_id' => 10, // Children's Books
                 'author_id' => 3,
                 'admin_id' => 1,
+                'author_name'=>'ahmad',
                 'quantity' => 60,
             ],
             [
@@ -111,6 +119,7 @@ class BookSeeder extends Seeder
                 'image_path' => 'https://picsum.photos/400/600?random=9',
                 'category_id' => 12, // Philosophy
                 'author_id' => 4,
+                'author_name'=>'ahmad',
                 'admin_id' => 1,
                 'quantity' => 15,
             ],
@@ -123,6 +132,7 @@ class BookSeeder extends Seeder
                 'category_id' => 15, // Travel
                 'author_id' => 5,
                 'admin_id' => 1,
+                'author_name'=>'ahmad',
                 'quantity' => 30,
             ],
         ];

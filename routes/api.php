@@ -43,9 +43,11 @@ Route::get('Suggest-Extra-Copies',[BookController::class,'Suggest_Extra_Copies']
 });
 
 Route::middleware(['auth:sanctum','author'])->group(function(){
-Route::post('publish-book', [AuthorController::class, 'publish_Book']);
+// Route::post('publish-book', [AuthorController::class, 'publish_Book']);
 Route::get('view-publishing-books', [AuthorController::class, 'view_Publishing_Requests']);
 Route::delete('delete-publishing-request/{id}', [AuthorController::class, 'delete_Publishing_Request']);
+Route::get('All-author-books/{id}', [BookController::class, 'allAuthorBooks']);
+
 });
 
 Route::middleware(['auth:sanctum','admin'])->group(function(){
@@ -57,7 +59,6 @@ Route::get('view-all-books',[AdminController::class,'view_all_books']);
 Route::get('view-publishing-requests',[AdminController::class,'publishing_requests']); 
 Route::get('delete-requests/{id}',[AdminController::class,'delete_requests']);
 Route::get('approve-requests/{id}',[AdminController::class,'approve_requests']);
-Route::post('add-book',[BookController::class,'add_book']);
 Route::post('add-category',[CategoryController::class,'add_category']);
 Route::post('update-book/{id}',[BookController::class,'update_book']);
 Route::get('delete-book/{id}',[BookController::class,'delete_book']);
@@ -71,4 +72,7 @@ Route::get('Monthly-report',[BookController::class,'Monthly_report']);
 Route::get('ineffective-Books',[BookController::class,'ineffective_Books']);
 });
     
+Route::middleware(['auth:sanctum', 'adminOrAuthor'])->group(function(){
 
+Route::post('publish-book',[BookController::class,'publish_book']);
+});

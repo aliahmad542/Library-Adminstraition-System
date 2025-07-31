@@ -21,7 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
             'admin' => \App\Http\Middleware\Admin::class, // Middleware الخاص بـ Admin
             'author' => \App\Http\Middleware\Author::class,
-            'user' => \App\Http\Middleware\User::class
+            'user' => \App\Http\Middleware\User::class,
+            'adminOrAuthor' => \App\Http\Middleware\AdminOrAuthorMiddleware::class,
+
         ]);
 
         //

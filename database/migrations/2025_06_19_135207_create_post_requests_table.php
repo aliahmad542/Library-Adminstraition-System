@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('description');
             $table->string('file_path');            
             $table->string('price');
-            $table->foreignId('author_id')->constrained('authors')->onDelete('cascade');;
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');;
-            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');;
+             $table->foreignId('author_id');
+            $table->string('author_name');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->integer('quantity');
             $table->enum('status',['pending','approved','rejected']);
             $table->timestamps();
