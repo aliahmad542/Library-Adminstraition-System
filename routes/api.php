@@ -62,7 +62,8 @@ Route::get('approve-requests/{id}',[AdminController::class,'approve_requests']);
 Route::post('add-category',[CategoryController::class,'add_category']);
 Route::post('update-book/{id}',[BookController::class,'update_book']);
 Route::get('delete-book/{id}',[BookController::class,'delete_book']);
-
+Route::get('get-category',[AdminController::class,'add_category']);//NeWWW
+Route::get('get-user-Books/{id}',[AdminController::class,'get_user_books']);//NeWWW
 Route::get('low-demand-books',[BookController::class,'show_law_demands_books']);
 Route::get('Most-Requested-books',[BookController::class,'Most_Requested_books']);
 Route::get('High-Demand-Categories',[BookController::class,'High_Demand_Categories']);

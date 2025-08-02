@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('file_path');            
+            $table->string('image_path');            
             $table->string('price');
              $table->foreignId('author_id');
-            $table->string('author_name');
+            $table->string('author_name')->default(null);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->integer('quantity');

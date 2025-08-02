@@ -25,6 +25,8 @@ class PostRequestSeeder extends Seeder
                 'quantity' => 100,
                 'author_name'=>'ahmad',
                 'status' => 'pending',
+                                'image_path' => 'https://picsum.photos/400/600?random=1',
+
             ],
             [
                 'title' => 'The Quantum Paradox',
@@ -38,6 +40,8 @@ class PostRequestSeeder extends Seeder
 
                 'quantity' => 75,
                 'status' => 'approved',
+                                'image_path' => 'https://picsum.photos/400/600?random=1',
+
             ],
             [
                 'title' => 'Cooking with Love',
@@ -51,6 +55,8 @@ class PostRequestSeeder extends Seeder
 
                 'quantity' => 50,
                 'status' => 'rejected',
+                                'image_path' => 'https://picsum.photos/400/600?random=1',
+
             ],
             [
                 'title' => 'Digital Marketing Mastery',
@@ -61,6 +67,7 @@ class PostRequestSeeder extends Seeder
                 'category_id' => 13, // Business
                 'admin_id' => 1,
                                 'author_name'=>'ahmad',
+                'image_path' => 'https://picsum.photos/400/600?random=1',
 
                 'quantity' => 80,
                 'status' => 'pending',
@@ -74,6 +81,7 @@ class PostRequestSeeder extends Seeder
                 'category_id' => 11, // Poetry
                 'admin_id' => 1,
                                 'author_name'=>'ahmad',
+                'image_path' => 'https://picsum.photos/400/600?random=1',
 
                 'quantity' => 40,
                 'status' => 'approved',

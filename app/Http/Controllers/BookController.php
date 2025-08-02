@@ -207,38 +207,59 @@ class BookController extends Controller
 
 
 
-    public function publish_book(Request $request)
+  public function publish_book(Request $request)
 {
     $request->validate([
         'title'       => 'required|string',
         'description' => 'required|string',
-        'file_path'   =>  'required|file|mimes:pdf,docx,epub',
+        'file_path'   => 'required|file|mimes:pdf,docx,epub',
         'price'       => 'required|numeric',
         'category_id' => 'required|exists:categories,id',
         'quantity'    => 'required|integer',
         'author_name' => 'required|string',
-        'image_path'  => 'required|string',
+        'image_path'  => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // ✅ صار file image
     ]);
 
     $user = Auth::user();
 
+    // ✅ 1. حفظ الصورة
+    $imagePath = null;
+    if ($request->hasFile('image_path')) {
+        $image = $request->file('image_path');
+        $imagePath = $image->store('uploads/book_images', 'public');
+    }
+
+    // ✅ 2. حفظ الملف (مثلاً PDF)
+    $filePath = null;
+    if ($request->hasFile('file_path')) {
+        $file = $request->file('file_path');
+        $filePath = $file->store('uploads/book_files', 'public');
+    }
+
+    // ✅ 3. التحقق من نوع المستخدم
     $isAdmin = Admin::where('email', $user->email)->exists();
     $isAuthor = Author::where('email', $user->email)->exists();
-
+if (!$imagePath || !$filePath) {
+    return response()->json([
+        'error' => 'Image or file upload failed!',
+        'imagePath' => $imagePath,
+        'filePath' => $filePath
+    ], 422);
+}
     if ($isAdmin) {
         $admin = Admin::where('email', $user->email)->first();
 
-        Book::create([
+       $publish= Book::create([
             'title'        => $request->title,
             'description'  => $request->description,
             'price'        => $request->price,
-            'file_path'    => $request->file_path,
+            'file_path'    => $filePath,
             'category_id'  => $request->category_id,
             'author_id'    => 0,
             'author_name'  => $request->author_name,
             'admin_id'     => $admin->id,
             'quantity'     => $request->quantity,
-            'image_path'   => $request->image_path,
+            'image_path'   => $imagePath, // ✅ المسار النسبي للصورة
         ]);
 
         return response()->json(['message' => 'Book added directly by admin'], 201);
@@ -246,20 +267,21 @@ class BookController extends Controller
     } elseif ($isAuthor) {
         $author = Author::where('email', $user->email)->first();
 
-        PostRequest::create([
+       $publish=  PostRequest::create([
             'title'        => $request->title,
             'description'  => $request->description,
-            'file_path'    => $request->file_path,
+            'file_path'    => $filePath,
             'price'        => $request->price,
             'category_id'  => $request->category_id,
             'author_id'    => $author->id,
-            'author_name'  => $author->firstname.' '.$author->lastname,
+            'author_name'  => 'null',
             'admin_id'     => 0,
             'quantity'     => $request->quantity,
+            'image_path'   => $imagePath, // ✅ تخزين الصورة
             'status'       => 'pending',
         ]);
-
-        return response()->json(['message' => 'Publish request sent for approval'], 201);
+      $info= $publish->load('author');
+        return response()->json(['message' => 'Publish request sent for approval',$info], 201);
     } else {
         return response()->json(['message' => 'Unauthorized'], 403);
     }
