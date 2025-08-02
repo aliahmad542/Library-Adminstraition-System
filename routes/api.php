@@ -33,7 +33,7 @@ Route::post('login-admin', [AuthenticatedSessionController::class, 'login_admin'
 Route::middleware(['auth:sanctum','user'])->group(function(){
 Route::get('view-my-profile', [UserController::class, 'view_my_Profile']);
 Route::Post('edit-my-profile', [UserController::class, 'Edit_my_Profile']);
-Route::post('request-books/{bookId}', [UserController::class, 'Request_Book']);
+Route::post('buy-books/{bookId}', [UserController::class, 'Buy_Book']);
 Route::post('add-book-to-Favorite/{BookId}', [UserController::class, 'add_To_Favorite']);
 Route::get('view-favorite-books', [UserController::class, 'view_Favorite_Books']);
 Route::get('download-books/{book}', [UserController::class, 'download_Book']); // need a check
@@ -63,7 +63,11 @@ Route::post('add-category',[CategoryController::class,'add_category']);
 Route::post('update-book/{id}',[BookController::class,'update_book']);
 Route::get('delete-book/{id}',[BookController::class,'delete_book']);
 Route::get('get-category',[AdminController::class,'add_category']);//NeWWW
-Route::get('get-user-Books/{id}',[AdminController::class,'get_user_books']);//NeWWW
+Route::get('get-Post-Request-By/{id}',[AdminController::class,'get_Post_Request_By_id']);//NeWWW
+Route::get('get-user-by/{id}', [AdminController::class, 'get_User_By_id']);//NeWWW
+Route::get('get-book-by/{id}', [AdminController::class, 'get_Book_By_id']);//NeWWW
+Route::get('total-profit', [AdminController::class, 'get_total_profit']);//NeWWW
+Route::get('/post-request/{id}', [PostRequestController::class, 'show']);
 Route::get('low-demand-books',[BookController::class,'show_law_demands_books']);
 Route::get('Most-Requested-books',[BookController::class,'Most_Requested_books']);
 Route::get('High-Demand-Categories',[BookController::class,'High_Demand_Categories']);

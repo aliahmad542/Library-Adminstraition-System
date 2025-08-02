@@ -1,0 +1,98 @@
+Admin Middleware Routes
+=======================
+Method: POST
+URI: /api/ban-user/{id}
+Action: App\Http\Controllers\AdminController@ban_user
+-------------------------
+Method: POST
+URI: /api/Unban-user/{id}
+Action: App\Http\Controllers\AdminController@Unban_user
+-------------------------
+Method: GET|HEAD
+URI: /api/delete-user/{id}
+Action: App\Http\Controllers\AdminController@delete_user
+-------------------------
+Method: GET|HEAD
+URI: /api/view-all-users
+Action: App\Http\Controllers\AdminController@view_all_users
+-------------------------
+Method: GET|HEAD
+URI: /api/view-all-books
+Action: App\Http\Controllers\AdminController@view_all_books
+-------------------------
+Method: GET|HEAD
+URI: /api/view-publishing-requests
+Action: App\Http\Controllers\AdminController@publishing_requests
+-------------------------
+Method: GET|HEAD
+URI: /api/delete-requests/{id}
+Action: App\Http\Controllers\AdminController@delete_requests
+-------------------------
+Method: GET|HEAD
+URI: /api/approve-requests/{id}
+Action: App\Http\Controllers\AdminController@approve_requests
+-------------------------
+Method: POST
+URI: /api/add-category
+Action: App\Http\Controllers\CategoryController@add_category
+-------------------------
+Method: POST
+URI: /api/update-book/{id}
+Action: App\Http\Controllers\BookController@update_book
+-------------------------
+Method: GET|HEAD
+URI: /api/delete-book/{id}
+Action: App\Http\Controllers\BookController@delete_book
+-------------------------
+Method: GET|HEAD
+URI: /api/get-category
+Action: App\Http\Controllers\AdminController@add_category
+-------------------------
+Method: GET|HEAD
+URI: /api/get-Post-Request-By/{id}
+Action: App\Http\Controllers\AdminController@get_Post_Request_By_id
+-------------------------
+Method: GET|HEAD
+URI: /api/get-user-by/{id}
+Action: App\Http\Controllers\AdminController@get_User_By_id
+-------------------------
+Method: GET|HEAD
+URI: /api/get-book-by/{id}
+Action: App\Http\Controllers\AdminController@get_Book_By_id
+-------------------------
+Method: GET|HEAD
+URI: /api/total-profit
+Action: App\Http\Controllers\AdminController@get_total_profit
+-------------------------
+Method: GET|HEAD
+URI: /api/post-request/{id}
+Action: App\Http\Controllers\PostRequestController@show
+-------------------------
+Method: GET|HEAD
+URI: /api/low-demand-books
+Action: App\Http\Controllers\BookController@show_law_demands_books
+-------------------------
+Method: GET|HEAD
+URI: /api/Most-Requested-books
+Action: App\Http\Controllers\BookController@Most_Requested_books
+-------------------------
+Method: GET|HEAD
+URI: /api/High-Demand-Categories
+Action: App\Http\Controllers\BookController@High_Demand_Categories
+-------------------------
+Method: GET|HEAD
+URI: /api/peak-purchase-hours
+Action: App\Http\Controllers\BookController@peak_purchase_hours
+-------------------------
+Method: GET|HEAD
+URI: /api/Most-Active-User
+Action: App\Http\Controllers\BookController@Most_Active_User
+-------------------------
+Method: GET|HEAD
+URI: /api/Monthly-report
+Action: App\Http\Controllers\BookController@Monthly_report
+-------------------------
+Method: GET|HEAD
+URI: /api/ineffective-Books
+Action: App\Http\Controllers\BookController@ineffective_Books
+-------------------------

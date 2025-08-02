@@ -63,7 +63,7 @@ class UserController extends Controller
         return response()->json($query->get());
     }
 
-    public function Request_Book(Request $request, $book_id)
+    public function Buy_Book(Request $request, $book_id)
 {
    
 $quantity_requested=$request->input('quantity');

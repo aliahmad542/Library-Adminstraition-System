@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\PostRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -244,5 +245,30 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         $books = $user->requestedBooks; // تأكد ان relation موجودة في User model
         return response()->json($books);
+    }
+     public function get_User_By_id($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json($user);
+    }
+     public function get_Book_By_id($id)
+    {
+        $book = Book::findOrFail($id);
+        return response()->json($book);
+    }
+    public function get_Post_Request_By_id($id)
+    {
+        $postRequest = PostRequest::findOrFail($id);
+        return response()->json($postRequest);
+    }
+    public function get_total_profit(){
+         $totalRevenue = DB::table('user_books')
+        ->join('books', 'user_books.book_id', '=', 'books.id')
+        ->select(DB::raw('SUM(books.price) as total'))
+        ->value('total');
+
+    return response()->json([
+        'total_revenue' => $totalRevenue
+    ]);
     }
 }
